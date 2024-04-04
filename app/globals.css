@@ -1,7 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -41,6 +45,10 @@
     @apply border-border;
   }
   body {
+
     @apply bg-background text-foreground;
   }
+}
+body{
+  scroll-behavior: smooth
 }

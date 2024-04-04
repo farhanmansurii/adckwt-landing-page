@@ -8,6 +8,8 @@ import {
   MdLocalShipping as Warehouse,
 } from "react-icons/md";
 import { GiCargoShip as Ship } from "react-icons/gi";
+import Link from "next/link";
+import { GetAQuote } from "../get-a-quote";
 export default function HeroSection() {
   const [state, setState] = useState(false);
   const navigation = [
@@ -17,7 +19,7 @@ export default function HeroSection() {
     },
     {
       title: "Request Quote",
-      href: "#services",
+      href: "#quote",
     },
     {
       title: "Features",
@@ -44,7 +46,7 @@ export default function HeroSection() {
     },
   ];
   useEffect(() => {
-    document.onclick = (e) => {
+    document.onclick = (e:any) => {
       const target = e.target;
       if (!target.closest(".menu-btn")) setState(false);
     };
@@ -52,9 +54,7 @@ export default function HeroSection() {
 
   const Brand = () => (
     <div className="flex items-center justify-between py-5 md:block">
-      <a href="javascript:void(0)">
-        <img width={120} height={50} alt="logo" />
-      </a>
+        <img width={120} height={50} alt="logo" src="/assets/light-logo.png"  />
       <div className="md:hidden">
         <button
           className="menu-btn text-white hover:text-gray-800"
@@ -126,29 +126,16 @@ export default function HeroSection() {
                   {navigation.map((item, idx) => {
                     return (
                       <li key={idx} className=" text-white">
-                        <a href={item.path} className="block">
+                        <Link scroll={true} href={item.href} className="block">
                           {item.title}
-                        </a>
+                        </Link>
                       </li>
                     );
                   })}
                 </ul>
                 <div className="items-center justify-end mt-6 space-y-6 md:flex md:mt-0">
-                  <Button>
-                    Get a Quote
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="w-5 h-5"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </Button>
+               <GetAQuote text="Get A Quote"/>
+                
                 </div>
               </div>
             </div>

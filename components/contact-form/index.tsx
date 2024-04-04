@@ -2,6 +2,8 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import RelocationForm from "./relocation-form";
+import { AnimatedTitle } from "../common-animations/title-animation";
 
 export default function ContactForm() {
   const contactMethods = [
@@ -22,7 +24,7 @@ export default function ContactForm() {
           />
         </svg>
       ),
-      contact: "Support@example.com",
+      contact: "info@adckwt.com",
     },
     {
       icon: (
@@ -41,7 +43,7 @@ export default function ContactForm() {
           />
         </svg>
       ),
-      contact: "+1 (555) 000-000",
+      contact: "+965 22493957 / + 965 22493956",
     },
     {
       icon: (
@@ -65,24 +67,27 @@ export default function ContactForm() {
           />
         </svg>
       ),
-      contact: "Mountain View, California, United State.",
+      contact:
+        "ADC Shipping Services Suhair Commercial Center Opp Sharq Fire Station 1st Floor Al Hilali Street Kuwait",
     },
   ];
 
   return (
-    <main className="py-14 bg-[#031225] min-h-[90vh]  ">
+    <main id='quote' className="py-14 bg-[#031225] min-h-[90vh]  ">
       <div className="max-w-screen-xl mx-auto px-4 text-white/80 md:px-8">
         <div className="max-w-lg mx-auto gap-12 justify-between lg:flex lg:max-w-none">
           <div className="max-w-lg space-y-3">
-            <h3 className="text-primary font-semibold">Contact</h3>
-            <p className=" text-3xl text-white font-semibold sm:text-4xl">
-              Let us know how we can help
-            </p>
-            <p>
-              We’re here to help and answer any question you might have, We look
+            <AnimatedTitle
+              wrapperClassName="space-y-3 flex flex-col"
+              additionalHeading="Contact"
+              additionalHeadingClassName="text-primary  uppercase font-semibold"
+              titleClassName=" text-3xl text-white font-semibold sm:text-4xl"
+              title="  Let us know how we can help"
+              subtitle="  We are here to help and answer any question you might have, We look
               forward to hearing from you! Please fill out the form, or us the
-              contact information bellow .
-            </p>
+              contact information below ."
+              subtitleClassName=""
+            />
             <div>
               <ul className="mt-6 flex flex-wrap gap-x-10 gap-y-6 items-center">
                 {contactMethods.map((item, idx) => (
@@ -95,31 +100,7 @@ export default function ContactForm() {
             </div>
           </div>
           <div className="flex-1 mt-12 sm:max-w-lg lg:max-w-md">
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="space-y-6 flex flex-col "
-            >
-              <div className="flex gap-1 flex-col ">
-                <label className="font-medium">Full name</label>
-                <Input type="text" required className="" />
-              </div>
-              <div className="flex gap-1 flex-col ">
-                <label className="font-medium">Email</label>
-                <Input type="email" required className="" />
-              </div>
-              <div className="flex gap-1 flex-col ">
-                <label className="font-medium">Company</label>
-                <Input type="text" required className="" />
-              </div>
-              <div className="flex gap-1 flex-col ">
-                <label className="font-medium">Message</label>
-                <textarea
-                  required
-                  className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border"
-                ></textarea>
-              </div>
-              <Button>Submit</Button>
-            </form>
+            <RelocationForm />
           </div>
         </div>
       </div>

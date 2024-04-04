@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { GetAQuote } from "./get-a-quote";
 
 const navLinks = [
   {
@@ -56,13 +58,7 @@ export const Navbar = () => {
     //   </div>
     // </section>
     <header className="text-slate-700 relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 lg:mx-auto lg:flex-row lg:items-center">
-      <a
-        href="#"
-        className="flex items-center whitespace-nowrap text-2xl font-black"
-      >
-        <span className="mr-2 w-8"></span>
-        Logo
-      </a>
+        <img alt="logo" className="w-10 h-10" src="/assets/footer-logo.png"/>
       <input type="checkbox" className="peer hidden" id="navbar-open" />
       <label
         className="absolute top-5 right-5 cursor-pointer lg:hidden"
@@ -102,7 +98,7 @@ export const Navbar = () => {
         </ul>
         <hr className="mt-4 w-full lg:hidden" />
         <div className="my-4 flex items-center space-x-6 space-y-2 lg:my-0 lg:ml-auto lg:space-x-8 lg:space-y-0">
-          <Button size={"lg"}>Get a Quote</Button>
+        <GetAQuote text="Get A Quote"/>
         </div>
       </nav>
     </header>
