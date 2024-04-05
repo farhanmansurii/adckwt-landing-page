@@ -30,7 +30,7 @@ export default function Testimonials() {
   return (
     <section className="py-[6rem]">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-        <div className="max-w-xl sm:text-center md:mx-auto">
+        <div className="w-11/12 mx-auto px-6 text-center space-y-3">
           <AnimatedTitle
             additionalHeading="Testimonials"
             wrapperClassName="space-y-3 flex flex-col"
@@ -42,11 +42,11 @@ export default function Testimonials() {
           />
         </div>
         <div className="my-12">
-            <InfiniteMovingCards
-              items={testimonials}
-              direction="right"
-              speed="slow"
-            />
+          <InfiniteMovingCards
+            items={testimonials}
+            direction="right"
+            speed="slow"
+          />
         </div>
       </div>
     </section>

@@ -59,14 +59,14 @@ export function GetAQuote({ text }: { text: string }) {
           </svg>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-md ">
+        <DialogHeader className="py-4 text-left">
           <DialogTitle>Request a Quote</DialogTitle>
           <DialogDescription>
             Fill in the form below to get a personalized quote.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
           <div className="flex flex-col gap-2">
             <Label htmlFor="name">Your Name</Label>
             <Input
@@ -103,7 +103,7 @@ export function GetAQuote({ text }: { text: string }) {
               <span className="text-red-500">{errors.number.message}</span>
             )}
           </div>
-          <DialogFooter className="sm:justify-start">
+          <DialogFooter className="sm:justify-start flex gap-2 flex-row">
             <DialogClose onClick={() => reset()} asChild>
               <Button
                 type="button"

@@ -73,10 +73,10 @@ export default function ContactForm() {
   ];
 
   return (
-    <main id='quote' className="py-14 bg-[#031225] min-h-[90vh]  ">
+    <main id="quote" className="py-14 bg-[#031225] min-h-[90vh]  ">
       <div className="max-w-screen-xl mx-auto px-4 text-white/80 md:px-8">
         <div className="max-w-lg mx-auto gap-12 justify-between lg:flex lg:max-w-none">
-          <div className="max-w-lg space-y-3">
+          <div className="max-w-lg w-11/12 mx-auto  space-y-3">
             <AnimatedTitle
               wrapperClassName="space-y-3 flex flex-col"
               additionalHeading="Contact"
@@ -85,11 +85,11 @@ export default function ContactForm() {
               title="  Let us know how we can help"
               subtitle="  We are here to help and answer any question you might have, We look
               forward to hearing from you! Please fill out the form, or us the
-              contact information below ."
+              contact information below"
               subtitleClassName=""
             />
             <div>
-              <ul className="mt-6 flex flex-wrap gap-x-10 gap-y-6 items-center">
+              <ul className="mt-6  flex flex-wrap gap-x-10 gap-y-6 items-center">
                 {contactMethods.map((item, idx) => (
                   <li key={idx} className="flex items-center gap-x-3">
                     <div className="flex-none text-gray-400">{item.icon}</div>
@@ -99,7 +99,7 @@ export default function ContactForm() {
               </ul>
             </div>
           </div>
-          <div className="flex-1 mt-12 sm:max-w-lg lg:max-w-md">
+          <div className="flex-1 mt-12 w-11/12 mx-auto  sm:max-w-lg lg:max-w-md">
             <RelocationForm />
           </div>
         </div>

@@ -84,12 +84,12 @@ const AnimatedFeature = ({ item, index }:{item:any,index:number}) => {
 export default function Services() {
   return (
     <AnimatePresence>
-      <section id='services' className="py-14 mb-24 ">
-        <div className="max-w-screen-xl  mx-auto px-4 text-gray-600 md:px-8">
-          <div className="max-w-xl space-y-3">
+      <section id="services" className="py-14 mb-24 ">
+        <div className="max-w-screen-xl min-h-[75vh] flex flex-col   gap-10 mx-auto px-4  text-gray-600 md:px-8">
+          <div className="w-11/12 mx-auto px-6 space-y-3">
             <AnimatedTitle
               additionalHeading="Services"
-              wrapperClassName="space-y-3 flex flex-col"
+              wrapperClassName="space-y-3 flex max-w-xl flex-col"
               additionalHeadingClassName="text-primary  uppercase font-semibold"
               title="Simple solutions for complex issues"
               subtitle="Explore our range of services tailored to meet your logistics and shipping needs."
@@ -97,7 +97,7 @@ export default function Services() {
               subtitleClassName=""
             />
           </div>
-          <div className="mt-12">
+          <div className="md:mt-12 flex  px-6 pb-6 w-11/12 mx-auto">
             <ul className="grid gap-y-12 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((item, idx) => (
                 <AnimatedFeature key={idx} item={item} index={idx} />

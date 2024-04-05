@@ -1,29 +1,28 @@
 import React from "react";
 import { Button } from "../ui/button";
-import { MdBackupTable, MdMap, MdTimer } from "react-icons/md";
-import { GiAirplane } from "react-icons/gi";
+import { FaWarehouse } from "react-icons/fa6";
 import { AnimatedTitle } from "../common-animations/title-animation";
 import { GetAQuote } from "../get-a-quote";
-
+import { GiCargoShip, GiAirplane, GiCargoCrate } from "react-icons/gi";
 export default function Features() {
 const features = [
   {
-    icon: <MdBackupTable className="w-full h-full text-inherit" />,
+    icon: <GiCargoShip className="w-full h-full text-inherit" />,
     title: "Sea Freight",
     desc: "Experience efficient and reliable sea freight solutions tailored to meet your unique needs, ensuring your cargo reaches its destination safely and on time.",
   },
   {
-    icon: <MdMap className="w-full h-full text-inherit" />,
+    icon: <GiAirplane className="w-full h-full text-inherit" />,
     title: "Air Freight",
     desc: "Benefit from our dependable air freight services, guaranteeing swift and punctual delivery of your goods to any destination worldwide, with a focus on quality and efficiency.",
   },
   {
-    icon: <MdTimer className="w-full h-full text-inherit" />,
+    icon: <FaWarehouse className="w-full h-full text-inherit" />,
     title: "Warehouse",
     desc: "Rely on our secure and spacious warehouses equipped with advanced facilities to store your possessions, providing peace of mind knowing your items are in safe hands until you need them.",
   },
   {
-    icon: <GiAirplane className="w-full h-full text-inherit" />,
+    icon: <GiCargoCrate className="w-full h-full text-inherit" />,
     title: "LCL",
     desc: "Optimize your shipping costs with our cost-effective Less than Container Load (LCL) services, ideal for smaller shipments, while still ensuring the same level of care and attention to detail.",
   },
@@ -55,7 +54,9 @@ const features = [
           <div className="flex gap-10  text-left flex-col">
             {features.map((item, idx) => (
               <div key={idx} className="gap-6 flex   flex-row  items-center">
-                <div className="w-24 text-primary p-2 h-24">{item.icon}</div>
+              <div className="flex-none w-14 h-14 text-primary flex items-center justify-center">
+        {item.icon}
+      </div>
                 <AnimatedTitle
                   wrapperClassName="flex gap-2 my-2 flex-col"
                   titleClassName="text-lg text-gray-800 font-semibold"
