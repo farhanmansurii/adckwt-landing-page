@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import React from "react";
 import { Button } from "../ui/button";
@@ -28,14 +28,11 @@ export default function HeroSection() {
     },
   ];
 
- 
-  
-
   const Brand = () => (
     <div className="flex items-center justify-between py-5 md:block">
-        <img width={120} height={50} alt="logo" src="/assets/light-logo.png"  />
+      <img width={120} height={50} alt="logo" src="/assets/light-logo.png" />
       <div className="md:hidden">
-       <NavSideBar links={navigation}/>
+        <NavSideBar links={navigation} />
       </div>
     </div>
   );
@@ -85,7 +82,10 @@ export default function HeroSection() {
                 </p>
                 <div className="justify-center items-center gap-x-3 flex">
                   <Link href={"#quote"}>
-                    <Button variant={'secondary'} className="rounded-none text-primary">
+                    <Button
+                      variant={"secondary"}
+                      className="rounded-none text-primary"
+                    >
                       Start Now
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -101,16 +101,16 @@ export default function HeroSection() {
                       </svg>
                     </Button>
                   </Link>
-                 <GetAQuote text="Get A Quote"/>
+                  <GetAQuote text="Get A Quote" />
                 </div>
               </div>
             </div>
           </section>
         </div>
       </div>
-      <TypeButtons/>
+      <Suspense>
+        <TypeButtons />
+      </Suspense>
     </>
   );
 }
-
-
