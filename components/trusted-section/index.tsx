@@ -8,15 +8,14 @@ export default function Logos() {
     <div className="py-14">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         <AnimatedTitle
-          title=" TRUSTED BY COMPANIES FROM AROUND THE WORLD
+          title=" logistics networks we are affiliated with
         
         "
-          titleClassName="font-semibold text-lg my-4 text-primary text-center"
+          titleClassName="font-semibold text-lg my-4 text-primary uppercase text-center"
           subtitle=""
           subtitleClassName=""
         />
-        <div className="mt-6">
-        </div>
+        <div className="mt-6"></div>
         <div className="flex overflow-hidden space-x-16 group">
           <div className="flex py-4 space-x-16 animate-loop-scroll group-hover:paused">
             <img

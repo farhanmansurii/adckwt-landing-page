@@ -54,6 +54,16 @@ const features = [
     title: "Mobility Services",
     description: "Comprehensive mobility support for diverse needs.",
   },
+  {
+    icon: <MdBusinessCenter />,
+    title: "Project Logistics",
+    description: "Comprehensive mobility support for diverse needs.",
+  },
+{
+    icon: <MdBusinessCenter />,
+    title: "Pharma Logistics",
+    description: "Comprehensive mobility support for diverse needs.",
+  },
 ];
 
 const AnimatedFeature = ({ item, index }:{item:any,index:number}) => {
