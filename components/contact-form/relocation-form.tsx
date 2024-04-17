@@ -14,8 +14,12 @@ const schema = z.object({
     address: z.string(),
     postcode: z.string(),
     city: z.string(),
+    country:z.string()
   }),
-  movingTo: z.string(),
+  movingTo: z.object({
+    destCity: z.string(),
+    country: z.string(),
+  }),
   moveDate: z.string(),
   moveDescription: z.string(),
   name: z.string(),
@@ -65,47 +69,7 @@ export default function RelocationForm() {
   };
 
   return (
-    <form
-      onSubmit={(e) => handleSubmit(onSubmit)(e)}
-      className="space-y-6"
-    >
-      <div>
-        <h2>Select countries</h2>
-        <div className="flex mt-2 flex-row gap-2">
-          <div className="w-full">
-            <label htmlFor="movingFrom">I am Moving from</label>
-            <Input
-              id="movingFrom"
-              type="text"
-              className="w-full"
-              placeholder="Address Postcode / Zip City"
-              {...register("movingFrom.address", {
-                required: "Address is required",
-              })}
-            />
-            {errors.movingFrom?.address && (
-              <span className="text-red-500">
-                {errors.movingFrom.address.message}
-              </span>
-            )}
-          </div>
-          <div className="w-full">
-            <label htmlFor="movingTo">I am Moving to</label>
-            <Input
-              id="movingTo"
-              type="text"
-              className="w-full"
-              placeholder="Destination City"
-              {...register("movingTo", {
-                required: "Destination city is required",
-              })}
-            />
-            {errors.movingTo && (
-              <span className="text-red-500">{errors.movingTo.message}</span>
-            )}
-          </div>
-        </div>
-      </div>
+    <form onSubmit={(e) => handleSubmit(onSubmit)(e)} className="space-y-6">
       <div>
         <h2>Where are you moving from?</h2>
         <div className="mt-2">
@@ -152,22 +116,45 @@ export default function RelocationForm() {
             </span>
           )}
         </div>
+        <Input
+          id="country"
+          type="text"
+          className="w-full"
+          placeholder="Country"
+          {...register("movingFrom.country", {
+            required: "Country is required",
+          })}
+        />
+        {errors.movingFrom?.country && (
+          <span className="text-red-500">
+            {errors.movingFrom.country.message}
+          </span>
+        )}
       </div>
       <div>
         <h2>Where are you moving to?</h2>
-        <div className="mt-2">
+        <div className="flex flex-row w-full justify-between my-2 space-x-2">
           <Input
-            id="destinationCity"
+            id="country"
             type="text"
-            placeholder="Destination City"
-            {...register("movingTo", {
-              required: "Destination city is required",
+            className="w-full"
+            placeholder="Country"
+            {...register("movingTo.country", {
+              required: "Country is required",
             })}
           />
-          {errors.movingTo && (
-            <span className="text-red-500">{errors.movingTo.message}</span>
-          )}
+          
+
+          <Input
+            id="city"
+            type="text"
+            className="w-full"
+            placeholder="Destination City"
+            {...register("movingTo.destCity", { required: "City is required" })}
+          />
+          
         </div>
+       
       </div>
       <div>
         <h2>Details of the move</h2>
@@ -182,7 +169,7 @@ export default function RelocationForm() {
               <span className="text-red-500">{errors.moveDate.message}</span>
             )}
           </div>
-         
+
           <div>
             <Textarea
               id="moveDescription"

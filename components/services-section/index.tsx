@@ -64,6 +64,16 @@ const features = [
     title: "Pharma Logistics",
     description: "Comprehensive mobility support for diverse needs.",
   },
+{
+    icon: <MdBusinessCenter />,
+    title: "Pet Relocation",
+    description: "",
+  },
+{
+    icon: <MdBusinessCenter />,
+    title: "Industrial Location",
+    description: "Comprehensive mobility support for diverse needs.",
+  },
 ];
 
 const AnimatedFeature = ({ item, index }:{item:any,index:number}) => {

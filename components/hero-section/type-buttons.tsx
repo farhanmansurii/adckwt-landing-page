@@ -8,18 +8,18 @@ import { GiCargoShip as Ship } from "react-icons/gi";
 const items = [
   {
     icon: <Warehouse className="w-full h-full   text-inherit" />,
-    text: "Warehousing Service.",
-    id: "warehousing",
+    text: "Freight Service.",
+    id: "freight",
   },
   {
     icon: <Ship className="w-full h-full   text-inherit" />,
-    text: "Ocean Freight Service.",
-    id: "ocean",
+    text: "Relocation Service.",
+    id: "relocation",
   },
   {
-    icon: <Flight className="w-full h-full   text-inherit" />,
-    text: "Air Freight Service.",
-    id: "air",
+    icon: <Warehouse className="w-full h-full   text-inherit" />,
+    text: "Warehousing Service.",
+    id: "warehouse",
   },
 ];
 export default function TypeButtons() {
@@ -39,7 +39,7 @@ export default function TypeButtons() {
           key={index}
           className="flex w-fit flex-row group hover:bg-primary duration-150 md:w-fit md:border bg-white  md:p-3 lg:p-4  text-center items-center shadow-lg gap-4 space-x-2"
         >
-          <div className="bg-primary w-16 md:w-18 lg:w-20 text-white group-hover:text-primary group-hover:bg-white duration-150 p-4 group-hover:p-3 aspect-square">
+          <div className="bg-primary w-16 md:w-18 lg:w-24 text-white group-hover:text-primary group-hover:bg-white duration-150 p-4 group-hover:p-3 aspect-square">
             {item.icon}
           </div>
           <div className="text-lg hidden md:flex  group-hover:text-white text-left text-wrap">
