@@ -8,6 +8,11 @@ import {
   MdStore,
   MdHome,
   MdBusinessCenter,
+  MdAssignment,
+  MdBusiness,
+  MdLocalHospital,
+  MdPets,
+  MdBuild,
 } from "react-icons/md";
 import { AnimatedTitle } from "../common-animations/title-animation";
 const features = [
@@ -44,37 +49,41 @@ const features = [
     description: "Flexible and secure warehousing tailored to your needs.",
   },
   {
-    icon: <MdBusinessCenter />,
+    icon: <MdLocalShipping />,
     title: "Relocation Services",
     description:
-      "Reliable services facilitating seamless transitions to new locations.",
+      "Efficient and hassle-free relocation solutions for homes and offices.",
   },
   {
-    icon: <MdBusinessCenter />,
+    icon: <MdAssignment />,
     title: "Mobility Services",
-    description: "Comprehensive mobility support for diverse needs.",
+    description: "Comprehensive mobility support for individuals and families.",
   },
   {
-    icon: <MdBusinessCenter />,
+    icon: <MdBusiness />,
     title: "Project Logistics",
-    description: "Comprehensive mobility support for diverse needs.",
+    description:
+      "Tailored logistics solutions for complex projects and operations.",
   },
-{
-    icon: <MdBusinessCenter />,
+  {
+    icon: <MdLocalHospital />,
     title: "Pharma Logistics",
-    description: "Comprehensive mobility support for diverse needs.",
+    description:
+      "Specialized handling and transport for pharmaceutical products.",
   },
-{
-    icon: <MdBusinessCenter />,
+  {
+    icon: <MdPets />,
     title: "Pet Relocation",
-    description: "",
+    description: "Safe and comfortable relocation services for beloved pets.",
   },
-{
-    icon: <MdBusinessCenter />,
-    title: "Industrial Location",
-    description: "Comprehensive mobility support for diverse needs.",
+  {
+    icon: <MdBuild />,
+    title: "Industrial Packing",
+    description:
+      "Secure and efficient packing solutions for industrial equipment.",
   },
 ];
+
 
 const AnimatedFeature = ({ item, index }:{item:any,index:number}) => {
   const ref = useRef(null);

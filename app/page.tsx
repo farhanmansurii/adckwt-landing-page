@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <Logos />
       <Features />
+      <Logos />
       <ContactForm />
       <Services />
       <Testimonials />

@@ -34,7 +34,7 @@ export default function FooterSection() {
             Established in 2003, ADC Shipping & Forwarding Services is renowned
             for its Quality Service, combined with competitive pricing.
           </div>
-          <GetAQuote  text="Get A Quote" />
+          <GetAQuote text="Get A Quote" />
         </div>
         <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
           <div className="flex flex-col space-y-5">
@@ -54,11 +54,11 @@ export default function FooterSection() {
           <div className="flex flex-col space-y-5">
             <h2 className="font-inter text-primary font-medium">CONTACT US</h2>
             <div className="font-inter font-light text-white">
-              ADC Shipping Services Suhair Commercial Center Opp. Sharq Fire
-              Station 1st Floor Al Hilali Street Kuwait
+              ADC Shipping & Forwarding Services Co. W.L.L Suhair Commercial
+              Center Opp. Sharq Fire Station 1st Floor Al Hilali Street Kuwait
             </div>
             <div className="font-inter font-light text-white">
-              Phone: +965 22493957
+              Phone: +965 22493957 Ext. 450
             </div>
             <div className="font-inter font-light text-white">
               Email: info@adckwt.com

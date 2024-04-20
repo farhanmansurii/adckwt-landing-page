@@ -77,10 +77,7 @@ export default function HeroSection() {
                 <h2 className="text-4xl text-white font-extrabold mx-auto md:text-5xl">
                   Get Ready For a wider expansion of your business
                 </h2>
-                <p className="max-w-2xl mx-auto text-white">
-                  Reach more market sectors for powerful business developement
-                  with the expansion of the best transport services
-                </p>
+               
                 <div className="justify-center items-center gap-x-3 w-1/2 mx-auto flex gap-2 flex-col">
                   <Input
                     id="phoneNumber"

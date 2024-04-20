@@ -7,7 +7,7 @@ import {
 import { GiCargoShip as Ship } from "react-icons/gi";
 const items = [
   {
-    icon: <Warehouse className="w-full h-full   text-inherit" />,
+    icon: <Flight className="w-full h-full   text-inherit" />,
     text: "Freight Service.",
     id: "freight",
   },

@@ -24,7 +24,7 @@ export default function ContactForm() {
           />
         </svg>
       ),
-      contact: "info@adckwt.com",
+      contact: "marketing@adckwt.com",
     },
     {
       icon: (
@@ -43,7 +43,7 @@ export default function ContactForm() {
           />
         </svg>
       ),
-      contact: "+965 22493957 / + 965 22493956",
+      contact: "+965 22493957 Ext. 450",
     },
     {
       icon: (
@@ -68,7 +68,7 @@ export default function ContactForm() {
         </svg>
       ),
       contact:
-        "ADC Shipping Services Suhair Commercial Center Opp Sharq Fire Station 1st Floor Al Hilali Street Kuwait",
+        "ADC Shipping  & Forwarding Services Co. W.L.L Suhair Commercial Center Opp Sharq Fire Station 1st Floor Al Hilali Street Kuwait",
     },
   ];
 

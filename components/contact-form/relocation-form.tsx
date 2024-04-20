@@ -200,7 +200,7 @@ export default function RelocationForm() {
             {errors.name && (
               <span className="text-red-500">{errors.name.message}</span>
             )}
-          </div>
+        </div>
           <div>
             <Input
               id="telephone"
