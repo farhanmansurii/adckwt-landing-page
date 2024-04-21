@@ -8,12 +8,12 @@ export default function FooterSection() {
       href: "#",
       name: "Home",
     },
-    
+
     {
       href: "#services",
       name: "Our Services",
     },
-   
+
     {
       href: "#features",
       name: "Our Features",
@@ -54,14 +54,16 @@ export default function FooterSection() {
           <div className="flex flex-col space-y-5">
             <h2 className="font-inter text-primary font-medium">CONTACT US</h2>
             <div className="font-inter font-light text-white">
-              ADC Shipping & Forwarding Services Co. W.L.L Suhair Commercial
-              Center Opp. Sharq Fire Station 1st Floor Al Hilali Street Kuwait
+              ADC Shipping & Forwarding Services Co. <br />
+              Suhair Commercial Center Opp. Sharq Fire Station 1st Floor Al
+              Hilali Street Kuwait
             </div>
+
             <div className="font-inter font-light text-white">
               Phone: +965 22493957 Ext. 450
             </div>
             <div className="font-inter font-light text-white">
-              Email: info@adckwt.com
+              Email: marketing@adckwt.com
             </div>
           </div>
         </div>

@@ -67,8 +67,13 @@ export default function ContactForm() {
           />
         </svg>
       ),
-      contact:
-        "ADC Shipping  & Forwarding Services Co. W.L.L Suhair Commercial Center Opp Sharq Fire Station 1st Floor Al Hilali Street Kuwait",
+      contact: (
+        <div>
+          ADC Shipping & Forwarding Services Co. <br />
+          Suhair Commercial Center Opp. Sharq Fire Station 1st Floor Al Hilali
+          Street Kuwait
+        </div>
+      ),
     },
   ];
 
@@ -83,9 +88,9 @@ export default function ContactForm() {
               additionalHeadingClassName="text-primary  uppercase font-semibold"
               titleClassName=" text-3xl text-white font-semibold sm:text-4xl"
               title="  Let us know how we can help"
-              subtitle="  We are here to help and answer any question you might have, We look
-              forward to hearing from you! Please fill out the form, or us the
-              contact information below"
+              subtitle="We are here to help and answer any question you might have, We look
+              forward to hearing from you! Please fill out the form or 
+              contact us"
               subtitleClassName=""
             />
             <div>

@@ -45,7 +45,7 @@ export default function HeroSection() {
           className="absolute inset-0 h-[900px]  bg-top bg-no-repeat bg-cover"
           style={{
             zIndex: 0,
-            backgroundImage: `url("/assets/boat.avif")`,
+            backgroundImage: `url("/assets/boat.jpg")`,
           }}
         ></div>
 

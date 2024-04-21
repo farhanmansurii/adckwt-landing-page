@@ -1,24 +1,26 @@
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 import {
   MdFlight as Flight,
   MdLocalShipping as Warehouse,
 } from "react-icons/md";
 import { GiCargoShip as Ship } from "react-icons/gi";
+import React from "react";
+import { FaTruck, FaMapMarkerAlt, FaWarehouse } from "react-icons/fa";
+
 const items = [
   {
-    icon: <Flight className="w-full h-full   text-inherit" />,
-    text: "Freight Service.",
+    icon: <FaTruck className="w-full h-full text-inherit" />,
+    text: "Freight Services",
     id: "freight",
   },
   {
-    icon: <Ship className="w-full h-full   text-inherit" />,
-    text: "Relocation Service.",
+    icon: <FaMapMarkerAlt className="w-full h-full text-inherit" />,
+    text: "Relocation Services",
     id: "relocation",
   },
   {
-    icon: <Warehouse className="w-full h-full   text-inherit" />,
-    text: "Warehousing Service.",
+    icon: <FaWarehouse className="w-full h-full text-inherit" />,
+    text: "Warehousing Services",
     id: "warehouse",
   },
 ];
