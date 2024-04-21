@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,14 +30,30 @@ export function GetAQuote({ text }: { text: string }) {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitted, isSubmitting, isSubmitSuccessful },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data); // Do whatever you need with the submitted data
-    reset(); // Reset the form after submission
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const formData = { ...data, type: "landing-page" };
+      const response = await fetch("/api/submitForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      await response.json();
+      reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+    }
   };
 
   return (
@@ -62,60 +78,87 @@ export function GetAQuote({ text }: { text: string }) {
       <DialogContent className="sm:max-w-md ">
         <DialogHeader className="py-4 text-left">
           <DialogTitle>Request a Quote</DialogTitle>
-          <DialogDescription>
-            Fill in the form below to get a personalized quote.
-          </DialogDescription>
+          {!isSubmitSuccessful && (
+            <DialogDescription>
+              Fill in the form below to get a personalized quote.
+            </DialogDescription>
+          )}
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="name">Your Name</Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              {...register("name")}
-            />
-            {errors.name && (
-              <span className="text-red-500">{errors.name.message}</span>
-            )}
+        {isSubmitSuccessful ? (
+          <div>
+            <div className=" py-6 ">
+              Thank you for your request. We will get back to you shortly.
+            </div>
+
+            <DialogFooter className="sm:justify-start flex gap-2 flex-row">
+              <DialogClose onClick={() => reset()} asChild>
+                <Button
+                  type="button"
+                  className="border-primary rounded-none text-primary"
+                  variant="outline"
+                >
+                  Close
+                </Button>
+              </DialogClose>
+            </DialogFooter>
           </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="email">Email Address</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              {...register("email")}
-            />
-            {errors.email && (
-              <span className="text-red-500">{errors.email.message}</span>
-            )}
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="number">Phone Number</Label>
-            <Input
-              id="number"
-              type="text"
-              placeholder="Enter your phone number"
-              {...register("number")}
-            />
-            {errors.number && (
-              <span className="text-red-500">{errors.number.message}</span>
-            )}
-          </div>
-          <DialogFooter className="sm:justify-start flex gap-2 flex-row">
-            <DialogClose onClick={() => reset()} asChild>
-              <Button
-                type="button"
-                className="border-primary rounded-none text-primary"
-                variant="outline"
-              >
-                Close
+        ) : (
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="name">Your Name</Label>
+              <Input
+                disabled={isSubmitting}
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+                {...register("name")}
+              />
+              {errors.name && (
+                <span className="text-red-500">{errors.name.message}</span>
+              )}
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="email">Email Address</Label>
+              <Input
+                disabled={isSubmitting}
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                {...register("email")}
+              />
+              {errors.email && (
+                <span className="text-red-500">{errors.email.message}</span>
+              )}
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="number">Phone Number</Label>
+              <Input
+                disabled={isSubmitting}
+                id="number"
+                type="text"
+                placeholder="Enter your phone number"
+                {...register("number")}
+              />
+              {errors.number && (
+                <span className="text-red-500">{errors.number.message}</span>
+              )}
+            </div>
+            <DialogFooter className="sm:justify-start flex gap-2 flex-row">
+              <DialogClose onClick={() => reset()} asChild>
+                <Button
+                  type="button"
+                  className="border-primary rounded-none text-primary"
+                  variant="outline"
+                >
+                  Close
+                </Button>
+              </DialogClose>
+              <Button disabled={isSubmitting} type="submit">
+                {isSubmitting ? "Submitting " : "Submit"}
               </Button>
-            </DialogClose>
-            <Button type="submit">Submit</Button>
-          </DialogFooter>
-        </form>
+            </DialogFooter>
+          </form>
+        )}
       </DialogContent>
     </Dialog>
   );

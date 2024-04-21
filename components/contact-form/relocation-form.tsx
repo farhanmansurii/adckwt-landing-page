@@ -7,14 +7,12 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Select } from "../ui/select";
 import { Textarea } from "../ui/textarea";
-
-// Define Zod schema
 const schema = z.object({
   movingFrom: z.object({
     address: z.string(),
     postcode: z.string(),
     city: z.string(),
-    country:z.string()
+    country: z.string(),
   }),
   movingTo: z.object({
     destCity: z.string(),
@@ -22,58 +20,52 @@ const schema = z.object({
   }),
   moveDate: z.string(),
   moveDescription: z.string(),
-  name: z.string(),
-  telephone: z.string(),
-  email: z.string().email(),
+  name: z.string().min(1, { message: "Name is required" }),
+  email: z.string().email({ message: "Invalid email address" }),
+  number: z.string().min(1, { message: "Phone number is required" }),
   movePayer: z.string(),
 });
 
 // Define type for form data based on Zod schema
 type FormValues = z.infer<typeof schema>;
-
 export default function RelocationForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitted, isSubmitting, isSubmitSuccessful },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async(data: FormValues, e:any) => {
-    e.preventDefault(); // Prevent form submission from reloading the page
-   try {
-     // Make a POST request to Google Apps Script web app endpoint
-     const response = await fetch(
-       "https://script.google.com/macros/s/AKfycby65TGMOVUcsDg9iLd9Kh8GAjWlTwDE2YNu6J5LVm0mnaK-cpBFmiXgSN59c6MeM5FibA/exec",
-       {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify(data),
-       }
-     );
-
-     if (response.ok) {
-       console.log("Form data sent successfully");
-       // Handle success (e.g., show success message, clear form, etc.)
-     } else {
-       console.error("Error sending form data:", response.statusText);
-       // Handle error (e.g., display error message)
-     }
-   } catch (error:any) {
-     console.error("Error sending form data:", error.message);
-     // Handle error (e.g., display error message)
-   }
+  const onSubmit = async (data: FormValues) => {
+    try {
+      const formData = { ...data, type: "relocation" };
+      const response = await fetch("/api/submitForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      await response.json();
+      reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
-
-  return (
+  return isSubmitSuccessful ? (
+    <div className="py-6 px-2 bg-primary text-white">Thank you for your submission! We will get back to you shortly !</div>
+  ) : (
     <form onSubmit={(e) => handleSubmit(onSubmit)(e)} className="space-y-6">
       <div>
         <h2>Where are you moving from?</h2>
         <div className="mt-2">
           <Input
+            disabled={isSubmitting}
             id="address"
             type="text"
             placeholder="Address"
@@ -81,14 +73,10 @@ export default function RelocationForm() {
               required: "Address is required",
             })}
           />
-          {errors.movingFrom?.address && (
-            <span className="text-red-500">
-              {errors.movingFrom.address.message}
-            </span>
-          )}
         </div>
         <div className="flex flex-row w-full justify-between my-2 space-x-2">
           <Input
+            disabled={isSubmitting}
             id="postcode"
             type="text"
             className="w-full"
@@ -97,26 +85,18 @@ export default function RelocationForm() {
               required: "Postcode / Zip is required",
             })}
           />
-          {errors.movingFrom?.postcode && (
-            <span className="text-red-500">
-              {errors.movingFrom.postcode.message}
-            </span>
-          )}
 
           <Input
+            disabled={isSubmitting}
             id="city"
             type="text"
             className="w-full"
             placeholder="City"
             {...register("movingFrom.city", { required: "City is required" })}
           />
-          {errors.movingFrom?.city && (
-            <span className="text-red-500">
-              {errors.movingFrom.city.message}
-            </span>
-          )}
         </div>
         <Input
+          disabled={isSubmitting}
           id="country"
           type="text"
           className="w-full"
@@ -125,16 +105,12 @@ export default function RelocationForm() {
             required: "Country is required",
           })}
         />
-        {errors.movingFrom?.country && (
-          <span className="text-red-500">
-            {errors.movingFrom.country.message}
-          </span>
-        )}
       </div>
       <div>
         <h2>Where are you moving to?</h2>
         <div className="flex flex-row w-full justify-between my-2 space-x-2">
           <Input
+            disabled={isSubmitting}
             id="country"
             type="text"
             className="w-full"
@@ -143,35 +119,32 @@ export default function RelocationForm() {
               required: "Country is required",
             })}
           />
-          
 
           <Input
+            disabled={isSubmitting}
             id="city"
             type="text"
             className="w-full"
             placeholder="Destination City"
             {...register("movingTo.destCity", { required: "City is required" })}
           />
-          
         </div>
-       
       </div>
       <div>
         <h2>Details of the move</h2>
         <div className="flex flex-col my-2 space-y-2">
           <div>
             <Input
+              disabled={isSubmitting}
               id="moveDate"
               type="date"
               {...register("moveDate", { required: "Move date is required" })}
             />
-            {errors.moveDate && (
-              <span className="text-red-500">{errors.moveDate.message}</span>
-            )}
           </div>
 
           <div>
             <Textarea
+              disabled={isSubmitting}
               id="moveDescription"
               className="rounded-none"
               placeholder="Describe your move"
@@ -179,11 +152,6 @@ export default function RelocationForm() {
                 required: "Move description is required",
               })}
             />
-            {errors.moveDescription && (
-              <span className="text-red-500">
-                {errors.moveDescription.message}
-              </span>
-            )}
           </div>
         </div>
       </div>
@@ -192,6 +160,7 @@ export default function RelocationForm() {
         <div className="flex flex-col space-y-2">
           <div>
             <Input
+              disabled={isSubmitting}
               id="name"
               type="text"
               placeholder="Name"
@@ -200,20 +169,22 @@ export default function RelocationForm() {
             {errors.name && (
               <span className="text-red-500">{errors.name.message}</span>
             )}
-        </div>
+          </div>
           <div>
             <Input
-              id="telephone"
-              type="tel"
-              placeholder="Telephone"
-              {...register("telephone", { required: "Telephone is required" })}
+              disabled={isSubmitting}
+              id="number"
+              type="number"
+              placeholder="Phone Number"
+              {...register("number", { required: "Telephone is required" })}
             />
-            {errors.telephone && (
-              <span className="text-red-500">{errors.telephone.message}</span>
+            {errors.number && (
+              <span className="text-red-500">{errors.number.message}</span>
             )}
           </div>
           <div>
             <Input
+              disabled={isSubmitting}
               id="email"
               type="email"
               placeholder="Email"
@@ -235,6 +206,7 @@ export default function RelocationForm() {
         <h2>Who is paying for the move?</h2>
         <div>
           <select
+            disabled={isSubmitting}
             className="bg-[#031225]   rounded px-3 py-2 w-full"
             id="movePayer"
             {...register("movePayer", { required: "Move payer is required" })}
@@ -248,7 +220,9 @@ export default function RelocationForm() {
           )}
         </div>
       </div>
-      <Button type="submit">Submit</Button>
+      <Button disabled={isSubmitting} type="submit">
+        {isSubmitting ? "Submitting..." : "Submit"}
+      </Button>
     </form>
   );
 }

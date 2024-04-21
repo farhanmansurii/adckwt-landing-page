@@ -8,6 +8,7 @@ import { GetAQuote } from "../get-a-quote";
 import { NavSideBar } from "./navigation-sidebar";
 import TypeButtons from "./type-buttons";
 import { Input } from "../ui/input";
+import { HeroForm } from "../get-a-quote/get-a-quote-simple";
 export default function HeroSection() {
   const navigation = [
     {
@@ -78,22 +79,7 @@ export default function HeroSection() {
                   Get Ready For a wider expansion of your business
                 </h2>
                
-                <div className="justify-center items-center gap-x-3 w-1/2 mx-auto flex gap-2 flex-col">
-                  <Input
-                    id="phoneNumber"
-                    type="number"
-                    placeholder="Phone Number"
-                    className="bg-white text-primary "
-                  />
-                  <Input
-                    id="email"
-                    type="text"
-                    placeholder="E-Mail"
-                    className="bg-white text-primary "
-                  />
-
-                  <Button>Submit</Button>
-                </div>
+               <HeroForm/>
               </div>
             </div>
           </section>
