@@ -57,7 +57,7 @@ export async function POST(req: Request, res: Response) {
     await sheets.spreadsheets.values.append(request);
     console.log("Data appended successfully");
     return Response.json({ message: "Form submitted successfully" });
-  } catch (error) {
+  } catch (error:any) {
     console.error("Error appending data:", error.message);
     return Response.json({ message: "Error submitting form" });
   }
