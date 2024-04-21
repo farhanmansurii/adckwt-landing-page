@@ -79,5 +79,5 @@
     "@types/bun": "latest"
   },
   "module": "index.ts",
-  "type": "module"
+  "type": "commonjs"
 }
