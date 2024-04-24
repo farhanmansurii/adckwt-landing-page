@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const items = [
   {
-    icon: <FaTruck className="w-full h-full text-inherit" />,
+    icon: <Ship className="w-full h-full text-inherit" />,
     text: "Freight Services",
     id: "freight",
   },

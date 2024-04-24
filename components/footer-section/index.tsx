@@ -63,6 +63,9 @@ export default function FooterSection() {
               Phone: +965 22493957 Ext. 450
             </div>
             <div className="font-inter font-light text-white">
+              Mobile: +965 97123536
+            </div>
+            <div className="font-inter font-light text-white">
               Email: marketing@adckwt.com
             </div>
           </div>

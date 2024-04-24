@@ -7,6 +7,7 @@ import { AnimatedTitle } from "../common-animations/title-animation";
 import { NormalForm } from "./freight-form";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
+import { FaMobile } from "react-icons/fa6";
 export default function ContactForm() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type") || "freight";
@@ -48,6 +49,10 @@ export default function ContactForm() {
         </svg>
       ),
       contact: "+965 22493957 Ext. 450",
+    },
+    {
+      icon: <FaMobile />, 
+      contact: "+965 97123536",
     },
     {
       icon: (
