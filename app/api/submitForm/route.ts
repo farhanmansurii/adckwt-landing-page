@@ -21,6 +21,30 @@ export async function POST(req: Request, res: Response) {
         new Date().toLocaleTimeString(),
       ],
     ];
+  } else if (data.type === "freight") {
+    range = "Frieght!A:E";
+    values = [
+      [
+        data.name,
+        data.email,
+        data.number,
+        data.notes,
+        new Date().toLocaleDateString(),
+        new Date().toLocaleTimeString(),
+      ],
+    ];
+  } else if (data.type === "warehouse") {
+    range = "Warehouse!A:E";
+    values = [
+      [
+        data.name,
+        data.email,
+        data.number,
+        data.notes,
+        new Date().toLocaleDateString(),
+        new Date().toLocaleTimeString(),
+      ],
+    ];
   } else if (data.type === "relocation") {
     range = "Relocation!A:Z";
     values = [
@@ -57,7 +81,7 @@ export async function POST(req: Request, res: Response) {
     await sheets.spreadsheets.values.append(request);
     console.log("Data appended successfully");
     return Response.json({ message: "Form submitted successfully" });
-  } catch (error:any) {
+  } catch (error: any) {
     console.error("Error appending data:", error.message);
     return Response.json({ message: "Error submitting form" });
   }

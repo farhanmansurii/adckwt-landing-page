@@ -1,11 +1,15 @@
-"use client";
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import RelocationForm from "./relocation-form";
 import { AnimatedTitle } from "../common-animations/title-animation";
-
+import { NormalForm } from "./freight-form";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+import { useRouter, useSearchParams } from "next/navigation";
 export default function ContactForm() {
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type") || "freight";
   const contactMethods = [
     {
       icon: (
@@ -76,25 +80,29 @@ export default function ContactForm() {
       ),
     },
   ];
+   const router = useRouter();
 
+   const handleClick = (val: string) => {
+     const currentParams = new URLSearchParams(searchParams.toString());
+     currentParams.set("type", val);
+     router.push(`?${currentParams.toString()}`, { scroll: false });
+   };
   return (
-    <main id="quote" className="py-14 bg-[#031225] min-h-[90vh]  ">
+    <main id="quote" className="py-14 bg-[#031225] min-h-[90vh]">
       <div className="max-w-screen-xl mx-auto px-4 text-white/80 md:px-8">
         <div className="max-w-lg mx-auto gap-12 justify-between lg:flex lg:max-w-none">
-          <div className="max-w-lg w-11/12 mx-auto  space-y-3">
+          <div className="max-w-lg w-11/12 mx-auto space-y-3">
             <AnimatedTitle
               wrapperClassName="space-y-3 flex flex-col"
               additionalHeading="Contact"
-              additionalHeadingClassName="text-primary  uppercase font-semibold"
-              titleClassName=" text-3xl text-white font-semibold sm:text-4xl"
-              title="  Let us know how we can help"
-              subtitle="We are here to help and answer any question you might have, We look
-              forward to hearing from you! Please fill out the form or 
-              contact us"
+              additionalHeadingClassName="text-primary uppercase font-semibold"
+              titleClassName="text-3xl text-white font-semibold sm:text-4xl"
+              title="Let us know how we can help"
+              subtitle="We are here to help and answer any question you might have, We look forward to hearing from you! Please fill out the form or contact us"
               subtitleClassName=""
             />
             <div>
-              <ul className="mt-6  flex flex-wrap gap-x-10 gap-y-6 items-center">
+              <ul className="mt-6 flex flex-wrap gap-x-10 gap-y-6 items-center">
                 {contactMethods.map((item, idx) => (
                   <li key={idx} className="flex items-center gap-x-3">
                     <div className="flex-none text-gray-400">{item.icon}</div>
@@ -104,8 +112,25 @@ export default function ContactForm() {
               </ul>
             </div>
           </div>
-          <div className="flex-1 mt-12 w-11/12 mx-auto  sm:max-w-lg lg:max-w-md">
-            <RelocationForm />
+          <div className="flex-1 mt-12 w-11/12 mx-auto sm:max-w-lg lg:max-w-md">
+            <Select value={type} onValueChange={handleClick}>
+              <SelectTrigger className="w-[280px] rounded-none mb-4">
+                <SelectValue placeholder="Select A Service" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Services</SelectLabel>
+                  <SelectItem value="freight">Freight Service</SelectItem>
+                  <SelectItem value="relocation">Relocation Service</SelectItem>
+                  <SelectItem value="warehouse">Warehouse Services</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            {type === "relocation" ? (
+              <RelocationForm />
+            ) : (
+              <NormalForm type={type} />
+            )}
           </div>
         </div>
       </div>
