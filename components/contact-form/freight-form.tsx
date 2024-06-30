@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "../ui/textarea";
+import ThankYouPage from "./thank-you-screen";
 
 const schema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -27,7 +28,7 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-export function NormalForm({type}:{type:string}) {
+export function NormalForm({ type }: { type: string }) {
   const {
     register,
     handleSubmit,
@@ -62,9 +63,7 @@ export function NormalForm({type}:{type:string}) {
     <div>
       <div className="sm:max-w-md ">
         {isSubmitSuccessful ? (
-          <div className="py-6 px-2 bg-primary text-white">
-            Thank you for your submission! We will get back to you shortly !
-          </div>
+          <ThankYouPage />
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
             <div className="flex flex-col gap-2">
@@ -119,7 +118,6 @@ export function NormalForm({type}:{type:string}) {
               )}
             </div>
             <div className="sm:justify-start flex gap-2 flex-row">
-             
               <Button disabled={isSubmitting} type="submit">
                 {isSubmitting ? "Submitting " : "Submit"}
               </Button>

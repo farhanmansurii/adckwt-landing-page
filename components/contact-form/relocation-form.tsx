@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Select } from "../ui/select";
 import { Textarea } from "../ui/textarea";
+import ThankYouPage from "./thank-you-screen";
 const schema = z.object({
   movingFrom: z.object({
     address: z.string(),
@@ -58,7 +59,7 @@ export default function RelocationForm() {
     }
   };
   return isSubmitSuccessful ? (
-    <div className="py-6 px-2 bg-primary text-white">Thank you for your submission! We will get back to you shortly !</div>
+    <ThankYouPage />
   ) : (
     <form onSubmit={(e) => handleSubmit(onSubmit)(e)} className="space-y-6">
       <div>
