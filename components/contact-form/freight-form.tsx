@@ -1,4 +1,5 @@
 "use client";
+import { sendGTMEvent } from "@next/third-parties/google";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "../ui/textarea";
 import ThankYouPage from "./thank-you-screen";
+import { reportConversion } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -53,6 +55,8 @@ export function NormalForm({ type }: { type: string }) {
       }
       await response.json();
       reset();
+      sendGTMEvent({ event: "conversion", value: type });
+      reportConversion();
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {

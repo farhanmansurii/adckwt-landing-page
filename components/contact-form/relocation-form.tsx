@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { sendGTMEvent } from "@next/third-parties/google";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,6 +9,7 @@ import { Input } from "../ui/input";
 import { Select } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import ThankYouPage from "./thank-you-screen";
+import { reportConversion } from "@/lib/analytics";
 const schema = z.object({
   movingFrom: z.object({
     address: z.string(),
@@ -54,6 +56,7 @@ export default function RelocationForm() {
       }
       await response.json();
       reset();
+      sendGTMEvent({ event: "conversion", value: "relocation" });
     } catch (error) {
       console.error("Error submitting form:", error);
     }
